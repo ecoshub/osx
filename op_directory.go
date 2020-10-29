@@ -17,6 +17,14 @@ var (
 	errStringNotExists string = "not exists"
 )
 
+func mkdir(dir string) error {
+	err := os.MkdirAll(dir, os.ModePerm)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func list(dir string) ([]string, error) {
 	if !isExist(dir) {
 		return nil, createError("list", errStringNotExists, dir)

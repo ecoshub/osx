@@ -6,10 +6,6 @@ import (
 	"testing"
 )
 
-var (
-	alican string = "hello"
-)
-
 const (
 	writerDirectory        string = "../test_assets/writerTest.txt"
 	testfileDirectory      string = "../test_assets/testfile.txt"

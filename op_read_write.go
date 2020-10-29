@@ -25,7 +25,7 @@ func readFileString(dir string) (string, error) {
 }
 
 //ReadAt read with specific offset of file with a length
-func readAt(dir string, offset int64, length int64) ([]byte, int, error) {
+func ReadAt(dir string, offset int64, length int64) ([]byte, int, error) {
 	f, err := os.Open(dir)
 	defer f.Close()
 	if err != nil {
@@ -44,8 +44,8 @@ func readAt(dir string, offset int64, length int64) ([]byte, int, error) {
 	return data, n, nil
 }
 
-//ReadAt read with specific offset of file with a length
-func writeAt(dir string, offset int64, data []byte) (int, error) {
+//WriteAt read with specific offset of file with a length
+func WriteAt(dir string, offset int64, data []byte) (int, error) {
 	f, err := os.OpenFile(dir, os.O_WRONLY, os.ModeAppend)
 	defer f.Close()
 	if err != nil {
@@ -59,7 +59,10 @@ func writeAt(dir string, offset int64, data []byte) (int, error) {
 	return n, nil
 }
 
-func writeFileString(dir string, buff string) error {
+// WriteFileString main file write function
+// it appends to end if file exists
+// if its not exists it creates and writes
+func WriteFileString(dir string, buff string) error {
 	b, err := byteconv.ToBytes(buff)
 	if err != nil {
 		return err
@@ -67,7 +70,7 @@ func writeFileString(dir string, buff string) error {
 	return WriteFile(dir, b)
 }
 
-// WriteFile main's main file write function
+// WriteFile main file write function
 // it appends to end if file exists
 // if its not exists it creates and writes
 func WriteFile(dir string, buff []byte) error {

@@ -1,7 +1,5 @@
 package osx
 
-import "os"
-
 func copyFile(source, destination string) error {
 	batcher, err := NewFileBatcher(source, defaultBatchSize)
 	data, hasNext := batcher.Next()
@@ -37,14 +35,6 @@ func moveFolder(source, destination string) error {
 		return err
 	}
 	err = deleteFolder(source)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func mkdir(dir string) error {
-	err := os.MkdirAll(dir, os.ModePerm)
 	if err != nil {
 		return err
 	}
